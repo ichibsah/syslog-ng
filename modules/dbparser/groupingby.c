@@ -387,6 +387,9 @@ grouping_by_init(LogPipe *s)
   GroupingBy *self = (GroupingBy *) s;
   GlobalConfig *cfg = log_pipe_get_config(s);
 
+  if (!log_parser_init_method(s))
+    return FALSE;
+
   if (!self->synthetic_message)
     {
       msg_error("The aggregate() option for grouping-by() is mandatory",
